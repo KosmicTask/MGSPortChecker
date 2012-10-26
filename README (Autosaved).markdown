@@ -15,12 +15,12 @@ If you use MGSPortChecker in your app and want it added to the list raise it as 
 Installation
 =====
 
-Install `portcheck.php` on your web server (say at portchecker.mysite.com/portchecker.php). This script will be used to call back to the source of the request to check the port status. 
+Install `portcheck.php` on your web server (say at portchecker.example.com/portcheck.php). This script will be used to call back to the source of the request to check the port status. 
 
 Usage
 ==========
 
-Usage is simple. Allocate a `MGSPortChecker`, configure it and call `start`.
+Usage is simple. Allocate a `MGSPortChecker`, configure it and call `start`. Alternatively use the `+ startForURL:port:timeout:delay:withDelegate` factory method.
 
 	-(void)startPortChecking
 	{
