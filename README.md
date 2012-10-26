@@ -62,6 +62,10 @@ When the check completes the `delegate` receives `portCheckerDidFinishProbing:`.
     	}
 	}
 
+Licence
+=======
+MIT
+
 Where did it come from?
 =======================
 
