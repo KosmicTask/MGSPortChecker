@@ -3,7 +3,7 @@
 //
 // request url pattern:
 //
-// portchecker.mysite.com/portchecker.php?p=1234&t=5
+// portcheck.example.com/portcheck.php?p=1234&t=5
 //
 // query keys:
 // p: port to be queried
