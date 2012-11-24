@@ -144,8 +144,8 @@ NSString * const MGSTimeOutTag = @"%_TIMEOUT_%";
  */
 - (NSURL *)composedURL
 {
-    NSString *portString = [NSString stringWithFormat:@"%d", self.portNumber];
-    NSString *timeoutString = [NSString stringWithFormat:@"%d", self.portQueryTimeout];
+    NSString *portString = [NSString stringWithFormat:@"%lu", (long)self.portNumber];
+    NSString *timeoutString = [NSString stringWithFormat:@"%lu", (long)self.portQueryTimeout];
     NSMutableString *path = [NSMutableString stringWithFormat:@"%@", self.path];
  
     [path replaceOccurrencesOfString:self.portTag withString:portString options:0 range:NSMakeRange(0, [path length])];
