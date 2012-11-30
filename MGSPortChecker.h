@@ -39,14 +39,15 @@
 - (void)portCheckerDidFinishProbing:(MGSPortChecker *)checker;
 @end
 
-typedef enum
+enum
 {
     kMGS_PORT_STATUS_NA,
     kMGS_PORT_STATUS_CHECKING,
     kMGS_PORT_STATUS_OPEN,
     kMGS_PORT_STATUS_CLOSED,
     kMGS_PORT_STATUS_ERROR
-} port_status_t;
+};
+typedef NSInteger port_status_t;
 
 @interface MGSPortChecker : NSObject
 {    
