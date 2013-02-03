@@ -96,10 +96,10 @@ NSString * const MGSTimeOutTag = @"%_TIMEOUT_%";
     if (self) {
         _URL = [url retain];
         _portNumber = 80;
-        _portQueryTimeout = 10;
+        _portQueryTimeout = 20;
         _delay = 0;
         _status = kMGS_PORT_STATUS_NA;
-        _gatewayAddress = @"";
+        _gatewayAddress = @"0.0.0.0";
         _path = [MGSPath retain];
         _portTag = MGSPortTag;
         _timeoutTag = MGSTimeOutTag;
@@ -177,6 +177,7 @@ NSString * const MGSTimeOutTag = @"%_TIMEOUT_%";
         return false;
     }
     
+    self.gatewayAddress = @"0.0.0.0";
     self.status = kMGS_PORT_STATUS_CHECKING;
     
     _timer = [[NSTimer scheduledTimerWithTimeInterval:self.delay target:self selector:@selector(startProbe:) userInfo:nil repeats: NO] retain];
@@ -233,7 +234,7 @@ NSString * const MGSTimeOutTag = @"%_TIMEOUT_%";
 #endif
     
     NSURLRequest * portProbeRequest = [NSURLRequest requestWithURL:theURL
-                                                       cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:15.0];
+                                                       cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:_portQueryTimeout + 5];
     
     if ((_connection = [[NSURLConnection alloc] initWithRequest:portProbeRequest delegate:self]))
         _portProbeData = [[NSMutableData alloc] init];
