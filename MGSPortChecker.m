@@ -94,13 +94,13 @@ NSString * const MGSTimeOutTag = @"%_TIMEOUT_%";
 {
     self = [super init];
     if (self) {
-        _URL = [url retain];
+        _URL = url;
         _portNumber = 80;
         _portQueryTimeout = 20;
         _delay = 0;
         _status = kMGS_PORT_STATUS_NA;
         _gatewayAddress = @"0.0.0.0";
-        _path = [MGSPath retain];
+        _path = MGSPath;
         _portTag = MGSPortTag;
         _timeoutTag = MGSTimeOutTag;
         
@@ -122,16 +122,7 @@ NSString * const MGSTimeOutTag = @"%_TIMEOUT_%";
 {
     [_timer invalidate];
     
-    [_timer release];
-    [_connection release];
-    [_portProbeData release];
-    [_URL release];
-    [_gatewayAddress release];
-    [_portTag release];
-    [_timeoutTag release];
-    [_path release];
     
-    [super dealloc];
 }
 
 #pragma mark -
@@ -180,7 +171,7 @@ NSString * const MGSTimeOutTag = @"%_TIMEOUT_%";
     self.gatewayAddress = @"0.0.0.0";
     self.status = kMGS_PORT_STATUS_CHECKING;
     
-    _timer = [[NSTimer scheduledTimerWithTimeInterval:self.delay target:self selector:@selector(startProbe:) userInfo:nil repeats: NO] retain];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:self.delay target:self selector:@selector(startProbe:) userInfo:nil repeats: NO];
     
     return true;
 }
@@ -209,7 +200,6 @@ NSString * const MGSTimeOutTag = @"%_TIMEOUT_%";
     
     self.status = kMGS_PORT_STATUS_NA;
     [_timer invalidate];
-    [_timer release];
     _timer = nil;
     
     [_connection cancel];
@@ -224,7 +214,6 @@ NSString * const MGSTimeOutTag = @"%_TIMEOUT_%";
 {
 #pragma unused(timer)
     
-    [_timer release];
     _timer = nil;
     
     NSURL *theURL = [self composedURL];
@@ -296,7 +285,6 @@ NSString * const MGSTimeOutTag = @"%_TIMEOUT_%";
 #pragma unused(connection)
     
     NSString * probeString = [[NSString alloc] initWithData:_portProbeData encoding:NSUTF8StringEncoding];
-    [_portProbeData release];
     _portProbeData = nil;
     
     if (probeString)
@@ -320,7 +308,6 @@ NSString * const MGSTimeOutTag = @"%_TIMEOUT_%";
             NSLog(@"Unable to get port status: invalid response (%@)", probeString);
             [self callBackWithStatus:kMGS_PORT_STATUS_ERROR];
         }
-        [probeString release];
     }
     else
     {

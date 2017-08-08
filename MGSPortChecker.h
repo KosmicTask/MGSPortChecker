@@ -59,7 +59,7 @@ typedef NSInteger port_status_t;
     NSTimer * _timer;
     
     NSUInteger _portNumber;
-    id <MGSPortCheckerDelegate> _delegate;
+    id <MGSPortCheckerDelegate> __weak _delegate;
     NSUInteger _delay;
     NSUInteger _portQueryTimeout;
     NSURL *_URL;
@@ -77,7 +77,7 @@ typedef NSInteger port_status_t;
 - (NSURL *)composedURL;
 
 @property NSUInteger portNumber;
-@property (assign) id <MGSPortCheckerDelegate> delegate;
+@property (weak) id <MGSPortCheckerDelegate> delegate;
 @property NSUInteger delay;
 @property NSUInteger portQueryTimeout;
 @property (copy) NSURL *URL;
